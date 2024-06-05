@@ -1,6 +1,24 @@
+import { useState } from "react";
 function ProductForm() {
+  const [nameProduct, setNameProduct] = useState("");
+  const [imgProduct, setImgProduct] = useState("");
+  const [priceProduct, setPriceProduct] = useState(0);
+  const [descriptionProduct, setDescriptionProduct] = useState("");
+
+  const handledSumit = (event) => {
+    event.preventDefault();
+    const data = {
+      Name: nameProduct,
+      Img: imgProduct,
+      Price: priceProduct,
+      Description: descriptionProduct,
+    };
+
+    alert(JSON.stringify(data));
+  };
+
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handledSumit}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +28,10 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            value={nameProduct}
+            onChange={(e) => {
+              setNameProduct(e.target.value);
+            }}
           />
         </label>
       </div>
@@ -22,7 +43,10 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            value={imgProduct}
+            onChange={(e) => {
+              setImgProduct(e.target.value);
+            }}
           />
         </label>
       </div>
@@ -34,7 +58,10 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            value={priceProduct}
+            onChange={(e) => {
+              setPriceProduct(Number(e.target.value));
+            }}
           />
         </label>
       </div>
@@ -46,7 +73,10 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            value={descriptionProduct}
+            onChange={(e) => {
+              setDescriptionProduct(e.target.value);
+            }}
             rows={4}
             cols={30}
           />
